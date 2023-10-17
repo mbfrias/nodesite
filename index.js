@@ -17,7 +17,7 @@ app.get('/coffee', (req, res) => {
 });
 
 app.get('/teapot', (req, res) => {
-  res.status(307).redirect('./coffee');
+  res.status(308).redirect('./coffee');
 })
 
 app.post('/sendform', (req, res) => {
