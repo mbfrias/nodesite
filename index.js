@@ -12,9 +12,13 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/public/index.html');
 });
 
-app.get('/teapot', (req, res) => {
-    res.status(418).send('I\'m a teapot');
+app.get('/coffee', (req, res) => {
+    res.status(418).send('I am a teapot and cannot brew coffee.');
 });
+
+app.get('/teapot', (req, res) => {
+  res.status(307).redirect('./coffee');
+})
 
 app.post('/sendform', (req, res) => {
     let transporter = nodemailer.createTransport({
