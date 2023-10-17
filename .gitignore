@@ -1,0 +1,7 @@
+# dont spy on my environment variables !!!
+.env
+
+# also i bloody hate macOS finder config files go away
+.DS_Store
+
+# okay all good yay!
