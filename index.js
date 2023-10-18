@@ -20,11 +20,11 @@ app.get('/teapot', (req, res) => {
   res.status(308).redirect('./coffee');
 })
 
-app.get('/sendform', (req, res) => {
+app.get('/contact/sendform', (req, res) => {
   res.status(405).appendHeader('Allow', 'POST').send('Method not allowed');
 });
 
-app.post('/sendform', (req, res) => {
+app.post('/contact/sendform', (req, res) => {
   // check if the form is filled out
   if (!req.body.name || !req.body.email || !req.body.subject || !req.body.message) {
     // spit out a 400 error and redirect the client to an error page
