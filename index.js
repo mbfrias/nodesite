@@ -53,7 +53,7 @@ app.post('/contact/sendform', (req, res) => {
       from: 'Contact Form <webform@mbfrias.me.uk>',
       replyTo: `${req.body.email}`,
       to: process.env.DESTINATION_EMAIL,
-      subject: 'HEY GUESS WHAT: NEW FORM SUBMISSION',
+      subject: 'Message from ${req.body.name}',
       text: `Name: ${req.body.name}\nEmail: ${req.body.email}\nSubject: ${req.body.subject}\nMessage: ${req.body.message}`
     }
 
@@ -61,7 +61,9 @@ app.post('/contact/sendform', (req, res) => {
     if (error) {  
       // spit out a 500 error and redirect the client to an error page
       console.error(error);
-      res.status(500).send('Error sending email');
+      res.status(500).send(
+        '<script>alert("An unexpected error occurred while sending your message. Please try again later."); window.history.back();</script>'
+      );
       return; 
     }
     console.log('Message sent');
