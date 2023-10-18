@@ -22,6 +22,7 @@ app.get('/teapot', (req, res) => {
 
 app.get('/sendform', (req, res) => {
   res.status(405).appendHeader('Allow', 'POST').send('Method not allowed');
+});
 
 app.post('/sendform', (req, res) => {
   // check if the form is filled out
