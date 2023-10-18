@@ -53,7 +53,7 @@ app.post('/contact/sendform', (req, res) => {
       from: 'Contact Form <webform@mbfrias.me.uk>',
       replyTo: `${req.body.email}`,
       to: process.env.DESTINATION_EMAIL,
-      subject: 'Message from ${req.body.name}',
+      subject: `Message from ${req.body.name}`,
       text: `Name: ${req.body.name}\nEmail: ${req.body.email}\nSubject: ${req.body.subject}\nMessage: ${req.body.message}`
     }
 
