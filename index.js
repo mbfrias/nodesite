@@ -20,7 +20,25 @@ app.get('/teapot', (req, res) => {
   res.status(308).redirect('./coffee');
 })
 
+app.get('/sendform', (req, res) => {
+  res.status(405).send('Method not allowed: §  Use POST instead')
+})
+
 app.post('/sendform', (req, res) => {
+  // check if the form is filled out
+  if (!req.body.name || !req.body.email || !req.body.subject || !req.body.message) {
+    // spit out a 400 error and redirect the client to an error page
+    return res.status(400).send(
+      '<script>alert("Please fill out all fields!"); window.history.back();</script>'
+    );
+  }
+  // check if the email is valid
+  if (!req.body.email.includes('@')) {
+    // spit out a 400 error and redirect the client to an error page
+    return res.status(400).send(
+      '<script>alert("Please enter a valid email address!"); window.history.back();</script>'
+    );
+  }
     let transporter = nodemailer.createTransport({
       host: "mail.spacemail.com",
       port: 465,
@@ -32,7 +50,8 @@ app.post('/sendform', (req, res) => {
     })
   
     let mailOptions = {
-      from: '"Contact Form" <webform@mbfrias.me.uk>',
+      from: 'Contact Form <webform@mbfrias.me.uk>',
+      replyTo: `${req.body.email}`,
       to: process.env.DESTINATION_EMAIL,
       subject: 'HEY GUESS WHAT: NEW FORM SUBMISSION',
       text: `Name: ${req.body.name}\nEmail: ${req.body.email}\nSubject: ${req.body.subject}\nMessage: ${req.body.message}`
@@ -41,7 +60,7 @@ app.post('/sendform', (req, res) => {
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {  
       // spit out a 500 error and redirect the client to an error page
-      console.log(error);
+      console.error(error);
       res.status(500).send('Error sending email');
       return; 
     }

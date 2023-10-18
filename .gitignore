@@ -4,4 +4,8 @@
 # also i bloody hate macOS finder config files go away
 .DS_Store
 
-# okay all good yay!
+# as well as this the vs code config files arent needed either
+.vscode
+
+# let alone jetbrains
+.idea
