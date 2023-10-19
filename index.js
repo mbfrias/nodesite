@@ -12,12 +12,16 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/public/index.html');
 });
 
+app.get('/londontransit', (req, res) => {
+  res.status(307).appendHeader('Location', 'https://londontransit.org.uk')
+});
+
 app.get('/coffee', (req, res) => {
     res.status(418).send('I am a teapot and cannot brew coffee.');
 });
 
 app.get('/teapot', (req, res) => {
-  res.status(308).redirect('./coffee');
+  res.redirect(308, './coffee');
 })
 
 app.get('/contact/sendform', (req, res) => {
