@@ -43,6 +43,14 @@ app.post('/contact/sendform', (req, res) => {
       '<script>alert("Please enter a valid email address!"); window.history.back();</script>'
     );
   }
+  // FORBID MESSAGES FROM "DENISBERGER.WEB@GMAIL.COM"
+  if (req.body.email.includes('denisberger.web@gmail.com')) {
+    // spit out a 403 error and redirect the client to an error page
+    return res.status(403).send(
+      '<script>alert("Due to spam, messages from this email address are not allowed."); window.history.back();</script>'
+    );
+  }
+
     let transporter = nodemailer.createTransport({
       host: "mail.spacemail.com",
       port: 465,
