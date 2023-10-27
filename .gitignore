@@ -9,3 +9,6 @@
 
 # let alone jetbrains
 .idea
+
+# also ssl for local development wont be needed on digital ocean
+certs
