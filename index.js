@@ -103,8 +103,8 @@ if (process.env.WEBHOST_SERVER == 'local') {
     console.log('alternate server configured on port 80 to redirect insecure connections to secure server');
   });
 } else if (process.env.WEBHOST_SERVER == 'digitalocean') {
-  app.listen(secureport, () => {
-    console.log('server configured for secure connections on port 443');
+  app.listen(insecureport, () => {
+    console.log('main server configured for Cloudflare-proxied connections on port 80');
   });
 } else {
   console.log('Error: WEBHOST_SERVER environment variable not set: returning 503 error to all requests');
