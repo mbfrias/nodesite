@@ -32,7 +32,7 @@ app.get('/coffee', (req, res) => {
 });
 
 app.get('/teapot', (req, res) => {
-  res.redirect(308, './coffee');
+  res.redirect(308, '../coffee');
 })
 
 app.get('/contact/sendform', (req, res) => {
