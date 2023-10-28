@@ -82,9 +82,7 @@ app.post('/contact/sendform', (req, res) => {
       return; 
     }
     console.log('Message sent');
-    res.send(
-      '<script>alert("Form submitted successfully!"); window.history.back();</script>'
-    );
+    res.status(201).sendFile(__dirname + '/public/201_sent.html');
   })
 });
 
@@ -107,8 +105,8 @@ if (process.env.WEBHOST_SERVER == 'local') {
     console.log('main server configured for Cloudflare-proxied connections on port 80');
   });
 } else {
-  console.log('Error: WEBHOST_SERVER environment variable not set: returning 503 error to all requests');
+  console.log('Error: WEBHOST_SERVER environment variable not set: returning 500 error to all requests');
   app.use((req, res, next) => {
-    res.status(503).sendFile(__dirname + '/public/503.html');
+    res.status(503).sendFile(__dirname + '/public/500.html');
   });
 }
