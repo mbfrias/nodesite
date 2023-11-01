@@ -18,7 +18,7 @@ if (process.env.WEBHOST_SERVER == 'local') {
 
 const contactLimiter = rateLimit({
   windowMs: 24 * 60 * 60 * 1000, // 24 hours
-  max: 3, // limit each IP to 3 requests per windowMs
+  max: 2, // limit each IP to 3 requests per windowMs
   handler: (req, res) => {
     res.status(429).sendFile(__dirname + '/public/429.html');
   }
