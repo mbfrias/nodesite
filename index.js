@@ -8,6 +8,7 @@ const dotenv = require('dotenv').config();
 const fs = require('fs');
 const http = require('http');
 const https = require('https');
+const rateLimit = require("express-rate-limit");
 if (process.env.WEBHOST_SERVER == 'local') {
   var https_options = {
     key: fs.readFileSync('./certs/banksymac.local+7-key.pem'),
@@ -15,6 +16,13 @@ if (process.env.WEBHOST_SERVER == 'local') {
   }
 }
 
+const contactLimiter = rateLimit({
+  windowMs: 24 * 60 * 60 * 1000, // 24 hours
+  max: 3, // limit each IP to 3 requests per windowMs
+  handler: (req, res) => {
+    res.status(429).sendFile(__dirname + '/public/429.html');
+  }
+});
 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -39,7 +47,7 @@ app.get('/contact/sendform', (req, res) => {
   res.status(405).appendHeader('Allow', 'POST').sendFile(__dirname + '/public/405.html');
 });
 
-app.post('/contact/sendform', (req, res) => {
+app.post('/contact/sendform', contactLimiter, (req, res) => {
   // check if the form is filled out
   if (!req.body.name || !req.body.email || !req.body.subject || !req.body.message) {
     // spit out a 400 error and redirect the client to an error page
