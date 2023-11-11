@@ -163,7 +163,7 @@ nav {
     }
 }
 
-.sectionopener, .contactbutton, #submit {
+.sectionopener, .contactbutton {
     border: 2px solid #fff;
     border-radius: 6%;
     background: transparent;
@@ -181,12 +181,6 @@ nav {
     background: #fff;
     color: #000;
     font-size: 1.6rem;
-}
-
-#submit:hover {
-    background: #fff;
-    color: #000;
-    font-size: 1rem;
 }
 
 .sectionopener:active, .contactbutton:active, #submit:active {
@@ -510,6 +504,31 @@ nav {
   margin-top: 1rem;
   cursor: pointer;
   transition: all 0.3s ease;
+}
+
+#contact-tube input:hover, #contact-tube textarea:hover {
+  background: #222;
+  font-size: 1rem;
+} 
+
+#contact-tube button {
+  border: 2px solid #fff;
+  border-radius: 1rem;
+  background: transparent;
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 0.5rem 1rem;
+  margin-top: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#contact-tube button:hover {
+  transform: scale(1.1);
+  background: #fff;
+  color: #000;
 }
 
 .hidden {

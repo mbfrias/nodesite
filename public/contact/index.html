@@ -35,6 +35,7 @@
       <script src="https://kit.fontawesome.com/3c4e7a03d3.js" crossorigin="anonymous"></script>
     </head>
     <body>
+        <script src="../assets/scripts/spin.js"></script>
         <nav class="navbar" id="topnav">
           <ul class="buttons">
             <li><a href="../" class="page-link">home</a></li>
@@ -63,14 +64,14 @@
                     <input type="text" id="subject" name="subject" placeholder="have you seen the new fnaf trailer?"><br>
                     <label for="message">message<br></label>
                     <textarea id="message" name="message" placeholder="waffle waffle waffle..." style="height:200px"></textarea><br>
-                    <input id="submit" type="submit" value="Submit">
+                    <button onclick="triggerSpinner()" id="submit" type="submit">send</button>
                 </form>
             </div>
             <div id="contacthow">
                 <h1 class="fontaudi">elsehow</h1>
                 <div id="inlinecontactbuttons">
                   <button onclick="window.open('mailto:martin@mbfrias.co.uk', '_blank')" class="contactbutton"><i class="fas fa-envelope"></i> email</button>
-                  <button onclick="window.open('https://mbf.fyi/twt', '_blank')" class="contactbutton"><i class="fab fa-twitter"></i> twitter</button>
+                  <button onclick="window.open('https://mbfr.me/twitter', '_blank')" class="contactbutton"><i class="fab fa-twitter"></i> twitter</button>
                   <button onclick="window.open(' https://mbf.fyi/dc', '_blank')" class="contactbutton"><i class="fab fa-discord"></i> discord</button>
                 </div>
             </div>
@@ -81,7 +82,6 @@
           <button id="dismiss">X</button>
         </div>
         <script src="../assets/scripts/hamburger.js"></script>
-        <script src="https://s.pageclip.co/v1/pageclip.js" charset="utf-8"></script>
         <script src="../assets/scripts/fetch-form.js"></script>
         <script src="../assets/scripts/parallax.js"></script>
     </body>

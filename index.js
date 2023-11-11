@@ -4,6 +4,8 @@ const nodemailer = require('nodemailer');
 const bodyParser = require('body-parser');
 const secureport = 443;
 const insecureport = 80;
+const localport = 3000;
+const localsecureport = 3443;
 const dotenv = require('dotenv').config();
 const fs = require('fs');
 const http = require('http');
@@ -99,13 +101,13 @@ app.use((req, res, next) => {
 });
 
 if (process.env.WEBHOST_SERVER == 'local') {
-  https.createServer(https_options, app).listen(secureport, () => {
+  https.createServer(https_options, app).listen(localsecureport, () => {
     console.log('main server configured for secure connections on port 443');
   });
   http.createServer((req, res) => {
     res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url });
     res.end();
-  }).listen(insecureport, () => {
+  }).listen(localport, () => {
     console.log('alternate server configured on port 80 to redirect insecure connections to secure server');
   });
 } else if (process.env.WEBHOST_SERVER == 'digitalocean') {
