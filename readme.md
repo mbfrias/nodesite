@@ -4,6 +4,8 @@
 
 # website
 
+IVE MIGRATED AGAIN: main site is now built with next.js and available at [this repo](https://github.com/mbfrias/website)
+
 this is the source code for my personal website, a node.js application that uses the express framework. it is hosted on a DigitalOcean app platform droplet.
 
 ## server programming
